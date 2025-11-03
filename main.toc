@@ -3,5 +3,10 @@
 \contentsline {section}{\numberline {1}Omologia Singolare}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Omologia ridotta}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Omotopia di catene e di mappe continue}{2}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Successione di Mayer-Vietoris}{3}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Relazione tra $H_1(X)$ e $\pi _1(X)$}{5}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.3}Relazione tra $H_1(X)$ e $\pi _1(X)$}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Successione di Mayer-Vietoris}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Teoria omologica}{9}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Jordan e Invarianza del dominio}{9}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Classificazione delle 2-varietà}{11}{subsection.1.7}%
+\contentsline {section}{\numberline {2}Omologia cellulare}{11}{section.2}%
+\contentsline {subsection}{\numberline {2.1}CW-complessi}{11}{subsection.2.1}%

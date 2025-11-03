@@ -209,8 +209,65 @@
     \end{enumerate}
 \end{proof}
 
-\subsection{Successione di Mayer-Vietoris}
 
+
+\subsection{Relazione tra $H_1(X)$ e $\pi_1(X)$}
+
+Per vedere i disegni di questa parte, che sono molto importanti, guardare le note di Simone Saccani. \nl
+\begin{remark}
+    Un cammino chiuso $\sigma: (I, \partial{I}) \to (X, x_0)$ può essere visto come $1$-simplesso signolare $\sigma: \Delta^1 \to X$ tale che $\partial{\sigma} = 0$. \nl
+    Mostriamo che la classe di $\sigma$ in omologia di $H_1(X)$ dipende solo dalla classe di omotopia di $\sigma$ in $\pi_1(X, x_0)$ e che la giunzione di cammini corrisponde alla somma in omologia. \nl
+    \begin{enumerate}
+        \item Siano $\sigma \sim \sigma'$ lacci omotopi ad estremi fissi con omotopia $F: I \times I \to X$. \nl
+        Dividiamo $I \times I$ in due simplessi: $[e_0 e_1 e_1']$ e $[e_0 e_1' e_0']$ con:
+        \[
+            e_0 = (0, 0), \quad e_1 = (1, 0), \quad e_1' = (1, 1), \quad e_0' = (0, 1)
+        \]
+        Consideriamo la catena singolare: $c = F \circ [e_0 e_1 e_1'] - F \circ [e_0 e_1' e_0']$. \nl
+        Si verifica che $\partial{c} = \sigma' - \sigma$, dunque $[\sigma] = [\sigma']$ in $H_1(X)$.
+        \item Sia $F: I \times I \to X$ una mappa continua tale che $F(t, s) = \sigma(t)$ per ogni $s \in I$. \nl
+        A questo punto considerando la catena singolare $c = F \circ [e_0 e_1 e_1'] + F \circ [e_0 e_1' e_0']$ si verifica che $\partial{c} = \sigma + \sigma^{-1}$. Dunque $[\sigma^{-1}] = -[\sigma] +$ in $H_1(X)$.
+        \item Infine vedere dalle dispense di Simone Saccani come si mostra che $[\sigma * \tau] = [\sigma] + [\tau]$ in $H_1(X)$.
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem} [Relazione tra $H_1(X)$ e l'abelianizzato di $\pi_1(X, x_0)$] \nl
+    Sia $X$ spazio topologico con base puntata $x_0 \in X$. \nl
+    Sia può definire $h': \pi_1(X, x_0) \to H_1(X)$ come:
+    \[
+        h'([\sigma]) = [\sigma]
+    \]
+    Poiché $H_1(X)$ è abeliano, $h'$ fattorizza attraverso l'abelianizzato di $\pi_1(X, x_0)$ dando luogo a un omomorfismo di gruppi:
+    \[
+        h: \pi_1(X, x_0)^{ab} \to H_1(X)
+    \]
+    Se $X$ è connesso per archi allora $h$ è un isomorfismo. Dunque:
+    \[
+        H_1(X) \cong \pi_1(X, x_0)^{ab}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Si vuole costruire una inversa $l: H_1(X) \to \pi_1(X, x_0)^{ab}$. \nl
+    Per ogni punto $x \in X$ indichiamo con $u_x$ un cammino da $x_0$ a $x$. \nl
+    Definiamo 
+    \[
+        l': \begin{cases}
+            C_1(X) \to \pi_1(X, x_0)^{ab} \\
+            \sigma \mapsto [u_{\sigma(0)} * \sigma * u_{\sigma(1)}^{-1}]
+        \end{cases}
+    \]
+    Per mostrare che $l'$ induce una mappa in omologia, dobbiamo verificare che $l'(\partial{c}) = 0$ per ogni $c \in C_2(X)$. \nl
+    Un $2$-simplesso $\tau: \Delta^2 \to X$ definisce un'omotopia tra i cammini $\tau \circ [v_0 v_1]$, $\tau \circ [v_0 v_2]$ e $\tau \circ [v_1 v_2]$. \nl
+    Si verifica che:
+    \[
+        l'(\partial{\tau}) = [u_{\tau(v_0)} * \tau \circ [v_1 v_2] * u_{\tau(v_2)}^{-1}] * [u_{\tau(v_0)} * \tau \circ [v_0 v_2] * u_{\tau(v_2)}^{-1}] * [u_{\tau(v_1)} * \tau \circ [v_0 v_1] * u_{\tau(v_0)}^{-1}] = 0
+    \]
+    Dunque $l'$ induce una mappa in omologia $l: H_1(X) \to \pi_1(X, x_0)^{ab}$. \nl
+    Si verifica facilmente che $l$ e $h$ sono inverse l'una dell'altra.
+\end{proof}
+
+\subsection{Successione di Mayer-Vietoris}
 \begin{definition} [Catene $\mathcal{U}$-piccole]
     Sia $\mathcal{U}$ un ricoprimento aperto di uno spazio topologico $X$. \nl
     Una catena $c = \sum_{\sigma} \nu_\sigma \sigma \in C_q(X)$ si dice \textbf{$\mathcal{U}$-piccola} se
@@ -332,61 +389,6 @@
     Sia $v: S^n \to \R^{n+1}$ continua e tale che $v(x)$ sia ortogonale a $x$ e tangente ad $S^n$. \nl
 \end{theorem}
 
-\subsection{Relazione tra $H_1(X)$ e $\pi_1(X)$}
-
-Per vedere i disegni di questa parte, che sono molto importanti, guardare le note di Simone Saccani. \nl
-\begin{remark}
-    Un cammino chiuso $\sigma: (I, \partial{I}) \to (X, x_0)$ può essere visto come $1$-simplesso signolare $\sigma: \Delta^1 \to X$ tale che $\partial{\sigma} = 0$. \nl
-    Mostriamo che la classe di $\sigma$ in omologia di $H_1(X)$ dipende solo dalla classe di omotopia di $\sigma$ in $\pi_1(X, x_0)$ e che la giunzione di cammini corrisponde alla somma in omologia. \nl
-    \begin{enumerate}
-        \item Siano $\sigma \sim \sigma'$ lacci omotopi ad estremi fissi con omotopia $F: I \times I \to X$. \nl
-        Dividiamo $I \times I$ in due simplessi: $[e_0 e_1 e_1']$ e $[e_0 e_1' e_0']$ con:
-        \[
-            e_0 = (0, 0), \quad e_1 = (1, 0), \quad e_1' = (1, 1), \quad e_0' = (0, 1)
-        \]
-        Consideriamo la catena singolare: $c = F \circ [e_0 e_1 e_1'] - F \circ [e_0 e_1' e_0']$. \nl
-        Si verifica che $\partial{c} = \sigma' - \sigma$, dunque $[\sigma] = [\sigma']$ in $H_1(X)$.
-        \item Sia $F: I \times I \to X$ una mappa continua tale che $F(t, s) = \sigma(t)$ per ogni $s \in I$. \nl
-        A questo punto considerando la catena singolare $c = F \circ [e_0 e_1 e_1'] + F \circ [e_0 e_1' e_0']$ si verifica che $\partial{c} = \sigma + \sigma^{-1}$. Dunque $[\sigma^{-1}] = -[\sigma] +$ in $H_1(X)$.
-        \item Infine vedere dalle dispense di Simone Saccani come si mostra che $[\sigma * \tau] = [\sigma] + [\tau]$ in $H_1(X)$.
-    \end{enumerate}
-\end{remark}
-
-\begin{theorem} [Relazione tra $H_1(X)$ e l'abelianizzato di $\pi_1(X, x_0)$] \nl
-    Sia $X$ spazio topologico con base puntata $x_0 \in X$. \nl
-    Sia può definire $h': \pi_1(X, x_0) \to H_1(X)$ come:
-    \[
-        h'([\sigma]) = [\sigma]
-    \]
-    Poiché $H_1(X)$ è abeliano, $h'$ fattorizza attraverso l'abelianizzato di $\pi_1(X, x_0)$ dando luogo a un omomorfismo di gruppi:
-    \[
-        h: \pi_1(X, x_0)^{ab} \to H_1(X)
-    \]
-    Se $X$ è connesso per archi allora $h$ è un isomorfismo. Dunque:
-    \[
-        H_1(X) \cong \pi_1(X, x_0)^{ab}
-    \]
-\end{theorem}
-
-\begin{proof}
-    Si vuole costruire una inversa $l: H_1(X) \to \pi_1(X, x_0)^{ab}$. \nl
-    Per ogni punto $x \in X$ indichiamo con $u_x$ un cammino da $x_0$ a $x$. \nl
-    Definiamo 
-    \[
-        l': \begin{cases}
-            C_1(X) \to \pi_1(X, x_0)^{ab} \\
-            \sigma \mapsto [u_{\sigma(0)} * \sigma * u_{\sigma(1)}^{-1}]
-        \end{cases}
-    \]
-    Per mostrare che $l'$ induce una mappa in omologia, dobbiamo verificare che $l'(\partial{c}) = 0$ per ogni $c \in C_2(X)$. \nl
-    Un $2$-simplesso $\tau: \Delta^2 \to X$ definisce un'omotopia tra i cammini $\tau \circ [v_0 v_1]$, $\tau \circ [v_0 v_2]$ e $\tau \circ [v_1 v_2]$. \nl
-    Si verifica che:
-    \[
-        l'(\partial{\tau}) = [u_{\tau(v_0)} * \tau \circ [v_1 v_2] * u_{\tau(v_2)}^{-1}] + [u_{\tau(v_0)} * \tau \circ [v_0 v_2] * u_{\tau(v_2)}^{-1}] + [u_{\tau(v_1)} * \tau \circ [v_0 v_1] * u_{\tau(v_0)}^{-1}] = 0
-    \]
-    Dunque $l'$ induce una mappa in omologia $l: H_1(X) \to \pi_1(X, x_0)^{ab}$. \nl
-    Si verifica facilmente che $l$ e $h$ sono inverse l'una dell'altra.
-\end{proof}
 
 \begin{definition} [Escissione] \nl
     Siano $U \subset A \subset X$ e l'inclusione $i: (X \setminus U, A \setminus U) \to (X, A)$. \nl
@@ -399,7 +401,7 @@ Per vedere i disegni di questa parte, che sono molto importanti, guardare le not
 
 \begin{theorem}
     [Teorema di escissione] \nl
-        Siano $A \subset X$ e $U \subset \mathrm{Int}(A)$. \nl
+        Siano $A \subset X$ e $\bar{U} \subset \mathrm{Int}(A)$. \nl
         Allora $U$ può essere escissa da $(X, A)$.
 \end{theorem}
 
@@ -432,7 +434,555 @@ Per vedere i disegni di questa parte, che sono molto importanti, guardare le not
     \[
         \partial_{q+1} \circ T_q + T_{q-1} \circ \partial_q = \mathrm{id}_{C_q(X)} - \mathrm{sd}_q
     \]
-    Dunque $\mathrm{sd}_* = \mathrm{id}_*$ in omologia. \nl
+    Dunque $\mathrm{sd}_* \equiv \mathrm{id}_*$ in omologia. \nl
+
+    \begin{lemma} \nl
+    Sia $\sigma$ un $q$-simplesso geometrico, se $\tau$ è un simplesso in $sd(\sigma)$ allora
+    \[
+        \mathrm{diam}(\tau) \leq \frac{q}{q+1} \mathrm{diam}(\sigma)
+    \]
+    \end{lemma}
+
+    \begin{proposition} \nl
+        Sia $\mathcal{U} = \set{U_i}_{i \in I}$ un ricoprimento aperto di uno spazio topologico $X$. \nl
+        Sia $\sigma: \Delta^q \to X$ un $q$-simplesso singolare, allora esiste $m_0 \in \N$ tale che 
+        \[
+            \forall m \geq m_0, \quad sd^m(\sigma) \in C_q^{\mathcal{U}}(X)
+        \]
+        Di conseguenza vale per ogni catena $c = \sum_{\sigma} \nu_\sigma \sigma \in C_q(X)$. \nl
+    \end{proposition}
+
+    \begin{theorem}
+    Sia $\mathcal{U} = \set{U_i}_{i \in I}$ un ricoprimento aperto di uno spazio topologico $X$. \nl
+    La mappa di inclusione $i: C_*^{\mathcal{U}}(X) \to C_*(X)$ induce un isomorfismo in omologia:
+    \[
+        i_*: H_q^{\mathcal{U}}(X) \to H_q(X)
+    \]
+    \end{theorem}
+
+    \begin{proof}
+        Mostriamo che la mappa di inclusione $i: C_*^{\mathcal{U}}(X) \to C_*(X)$ è surgettiva in omologia. \nl
+        Se infatti $z \in C_q(X)$ è un ciclo, esiste $m_0$ tale che $sd^{m_0}(z) \in C_q^{\mathcal{U}}(X)$, ma poiché $sd_*$ è omotopa all'identità, si ha che $[z] = [sd^{m_0}(z)]$ in omologia. \nl
+        Mostriamo ora che $i_*$ è iniettiva, se infatti $i_*([z]) = 0$ per un ciclo $z \in C_q^{\mathcal{U}}(X)$, esiste $c \in C_{q+1}(X)$ tale che $\partial{c} = z$. \nl
+        \[
+            [z] = [sd^{m_0}(z)] = [sd^{m_0}(\partial{c})] = [\partial{sd^{m_0}(c)}] = [0]
+        \]
+        in sostanza abbiamo dimostrato che se se una catena è un bordo in $C_*(X)$, allora è omotopa ad una catena $\mathcal{U}$-piccola ed è il bordo di una catena $\mathcal{U}$-piccola.
+    \end{proof}
+
+    \begin{corollary} \nl
+        Sia $A \subset X$. Sia $C_q^{\mathcal{U}}(X, A) := C_q^{\mathcal{U}}(X) / C_q^{\mathcal{U}}(A)$ il complesso di catene relativo formato da catene $\mathcal{U}$-piccole. \nl
+        La mappa di inclusione $i: C_*^{\mathcal{U}}(X, A) \to C_*(X, A)$ induce un isomorfismo in omologia:
+        \[
+            i_*: H_q^{\mathcal{U}}(X, A) \to H_q(X, A)
+        \]
+    \end{corollary}
+
+    \begin{proof}
+    Si considera il seguente diagramma commutativo con righe esatte:
+    \[
+        \begin{tikzcd}
+            0 \arrow{r} & C_*^{\mathcal{U}}(A) \arrow{r} \arrow{d}{i_A} & C_*^{\mathcal{U}}(X) \arrow{r} \arrow{d}{i_X} & C_*^{\mathcal{U}}(X, A) \arrow{r} \arrow{d}{i} & 0 \\
+            0 \arrow{r} & C_*(A) \arrow{r} & C_*(X) \arrow{r} & C_*(X, A) \arrow{r} & 0
+        \end{tikzcd}
+    \]
+    Dalle ipotesi si ha che $i_A$ e $i_X$ inducono isomorfismi in omologia. \nl
+     % https://q.uiver.app/#q=WzAsMTQsWzEsMCwiSF9xXntcXG1hdGhjYWx7VX19KEEpIl0sWzIsMCwiSF9xXntcXG1hdGhjYWx7VX19KFgpIl0sWzMsMCwiSF9xXntcXG1hdGhjYWx7VX19KFgsQSkiXSxbNCwwLCJIX3txLTF9XntcXG1hdGhjYWx7VX19KEEpIl0sWzUsMCwiSF97cS0xfV57XFxtYXRoY2Fse1V9fShYKSJdLFsxLDEsIkhfcShBKSJdLFsyLDEsIkhfcShYKSJdLFszLDEsIkhfcShYLCBBKSJdLFs0LDEsIkhfe3EtMX0oQSkiXSxbNSwxLCJIX3txLTF9KFgpIl0sWzAsMCwiXFxjZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbNiwwLCJcXGNkb3RzIl0sWzYsMSwiXFxjZG90cyJdLFswLDVdLFswLDFdLFsxMCwwXSxbMTEsNV0sWzUsNl0sWzYsN10sWzEsMl0sWzIsM10sWzcsOF0sWzMsNF0sWzgsOV0sWzQsMTJdLFs5LDEzXSxbMSw2LCJpXyoiXSxbMyw4LCJpXyoiXSxbNCw5LCJpXyoiXV0=
+        \[\begin{tikzcd}
+            \cdots & {H_q^{\mathcal{U}}(A)} & {H_q^{\mathcal{U}}(X)} & {H_q^{\mathcal{U}}(X,A)} & {H_{q-1}^{\mathcal{U}}(A)} & {H_{q-1}^{\mathcal{U}}(X)} & \cdots \\
+            \cdots & {H_q(A)} & {H_q(X)} & {H_q(X, A)} & {H_{q-1}(A)} & {H_{q-1}(X)} & \cdots
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow["{i_*}"', "\cong", from=1-2, to=2-2]
+            \arrow[from=1-3, to=1-4]
+            \arrow["{i_*}"', "\cong", from=1-3, to=2-3]
+            \arrow[from=1-4, to=1-5]
+            \arrow["{i_*}"', from=1-4, to=2-4]
+            \arrow[from=1-5, to=1-6]
+            \arrow["{i_*}"', "\cong", from=1-5, to=2-5]
+            \arrow[from=1-6, to=1-7]
+            \arrow["{i_*}"', "\cong", from=1-6, to=2-6]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+            \arrow[from=2-4, to=2-5]
+            \arrow[from=2-5, to=2-6]
+            \arrow[from=2-6, to=2-7]
+        \end{tikzcd}\]
+
+    Dunque per il lemma del cinque anche $i_*$ è isomorfismo in omologia.
+    \end{proof}
+
+    \begin{theorem} [Lemma dei 5] \nl
+        Sia il seguente diagramma commutativo con righe esatte:
+        \[
+            \begin{tikzcd}
+                A_1 \arrow{r} \arrow{d}{\alpha_1} & A_2 \arrow{r} \arrow{d}{\alpha_2} & A_3 \arrow{r} \arrow{d}{\alpha_3} & A_4 \arrow{r} \arrow{d}{\alpha_4} & A_5 \arrow{d}{\alpha_5} \\
+                B_1 \arrow{r} & B_2 \arrow{r} & B_3 \arrow{r} & B_4 \arrow{r} & B_5
+            \end{tikzcd}
+        \]
+        Se $\alpha_1, \alpha_2, \alpha_4, \alpha_5$ sono isomorfismi allora anche $\alpha_3$ è un isomorfismo.
+    \end{theorem}
+
+    Per finire la dimostrazione del teorema di Escissione. consideriamo $\mathcal{U} = \set{X \setminus U, (A)}$ un ricoprimento di $X$. \nl
+    $\mathcal{U}$ non è un ricoprimento aperto, ma contiene un ricoprimento aperto dato da $\mathcal{V} = \set{X \setminus \bar{U}, \mathrm{Int}(A)}$. \nl
+    Consideriamo:
+   
+    % https://q.uiver.app/#q=WzAsNCxbMCwwXSxbMSwwLCJDX3EoWCBcXHNldG1pbnVzIEEsIEEgXFxzZXRtaW51cyBVKSJdLFsyLDAsIkNfcV57XFxtYXRoY2Fse1V9fShYLCBBKSJdLFszLDAsIkNfcShYLCBBKSJdLFsxLDIsImoiXSxbMiwzLCJpIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+    \[\begin{tikzcd}
+        {} & {C_q(X \setminus A, A \setminus U)} & {C_q^{\mathcal{U}}(X, A)} & {C_q(X, A)}
+        \arrow["j", from=1-2, to=1-3]
+        \arrow["i", hook, from=1-3, to=1-4]
+    \end{tikzcd}\]
+
+    Se dimostriamo che $j$ è un isomorfismo di complessi di catene, allora dato che per il teorema precedente $i$ induce un isomorfismo in omologia, si conclude che l'inclusione $j \circ i: C_q(X \setminus U, A \setminus U) \to C_q(X, A)$ induce un isomorfismo in omologia. \nl
+
+    \begin{enumerate}
+        \item Mostriamo che $j$ è surgettiva. \nl
+        Sia $z \in C_q^{\mathcal{U}}(X)$ allora $z = z' + z''$ con $z' \in C_q(X \setminus U)$ e $z'' \in C_q(A)$. \nl
+        Ma quindi $[z] = [z' + z''] = [z']$ in $C_q^{\mathcal{U}}(X, A)$, dunque $j([z']) = [z]$.
+        \item Mostriamo che $j$ è iniettiva. \nl
+        Sia $z \in C_q(X \setminus U, A \setminus U)$ tale che $j([z]) = 0$ allora $z \in C_q^{\mathcal{U}}(A) = $, dunque, poiché $z \in C_q(X \setminus U)$ sarà nell'intersezione, cioè $z \in C_q(A \setminus U)$ e quindi $[z] = 0$ in $C_q(X \setminus U, A \setminus U)$.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition} (Coppia escissiva) \nl
+    Una coppia $(X_1, X_2)$ di spazi topologici si dice \textbf{escissiva} se le inclusioni:
+    \[
+        i_1: (X_1, X_1 \cap X_2) \hookrightarrow (X_1 \cup X_2, X_1 \cup X_2), \quad i_2: (X_2, X_1 \cap X_2) \hookrightarrow (X_1 \cup X_2, X_1)
+    \]
+    inducono isomorfismi in omologia.
+\end{definition}
+
+\begin{lemma} \nl
+    Sia $(X_1, X_2)$ una coppia di spazi e $i: C_q(X_1) + C_q(X_2) \to C_q(X_1 \cup X_2)$ l'inclusione. \nl 
+    \[
+        (X_1, X_2) \text{ escissiva } \iff i_*: H_q(X_1) + H_q(X_2) \to H_q(X_1 \cup X_2) \text{ è un isomorfismo}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Considero la successione esatta corta:
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiQ19xKFhfMSkiXSxbMiwwLCJDX3EoWF8xKStDX3EoWF8yKSJdLFszLDAsIlxcbGVmdChDX3EoWF8xKStDX3EoWF8yKVxccmlnaHQpL3tDX3EoWF8xIFxcY2FwIFhfMil9Il0sWzQsMCwiMCJdLFswLDFdLFsxLDIsImkiXSxbMiwzLCJcXHBpIl0sWzMsNF1d
+    \[\begin{tikzcd}
+        0 & {C_q(X_1)} & {C_q(X_1)+C_q(X_2)} & {\left(C_q(X_1)+C_q(X_2)\right)/{C_q(X_1 \cap X_2)}} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["i", from=1-2, to=1-3]
+        \arrow["\pi", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    Ma vale per il secondo teorema di isomorfismo
+    \[
+        \left(C_q(X_1) + C_q(X_2)\right)/C_q(X_1 \cap X_2) \cong C_q(X_2) / C_q(X_1 \cap X_2) 
+    \]
+    quindi
+     \[\begin{tikzcd}
+        0 & {C_q(X_1)} & {C_q(X_1)+C_q(X_2)} & {C_q(X_2)/C_q(X_1 \cap X_2)} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["i", from=1-2, to=1-3]
+        \arrow["\pi", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    Se verificassimo che il seguente diagramma sia commutativo
+
+    % https://q.uiver.app/#q=WzAsMTQsWzAsMCwiSF97cSsxfShYXzIsIFhfMSBcXGNhcCBYXzIpIl0sWzAsMSwiSF9xKFhfMSBcXGN1cCBYXzIsIFhfMSkiXSxbMSwwLCJIX3EoWCkiXSxbMiwwLCJIX3EoQ18qKFhfMSkrQ18qKFhfMikpIl0sWzMsMCwiSF9xKFhfMiwgWF8xIFxcY2FwIFhfMikiXSxbNCwwLCJIX3txLTF9KFhfMSkiXSxbMSwxLCJIX3EoWCkiXSxbMiwxLCJIX3EoWF8xIFxcY3VwIFhfMikiXSxbMywxLCJIX3EoWF8xIFxcY3VwIFhfMiwgWF8xKSJdLFs0LDEsIkhfe3EtMX0oWF8xKSJdLFs1LDAsIkhfcShDXyooWF8xKStDXyooWF8yKSkiXSxbNSwxLCJIX3EoWF8xIFxcY3VwIFhfMikiXSxbNiwwLCJcXGNkb3RzIl0sWzYsMSwiXFxjZG90cyJdLFsyLDNdLFswLDJdLFszLDRdLFs0LDVdLFs1LDEwXSxbNiw3XSxbNyw4XSxbOCw5XSxbOSwxMV0sWzUsOSwiXFxtYXRocm17aWR9XyoiLDJdLFs0LDgsIlxccHNpIiwyXSxbMyw3LCJcXHZhcnBoaSIsMl0sWzIsNiwiXFxtYXRocm17aWR9XyoiLDJdLFsxLDZdLFsxMCwxMl0sWzExLDEzXSxbMTAsMTEsIlxcdmFycGhpIiwyXSxbMCwxLCJcXHBzaSIsMl1d
+\[\begin{tikzcd}[column sep=tiny]
+	{H_{q+1}(X_2, X_1 \cap X_2)} & {H_q(X)} & {H_q(C_*(X_1)+C_*(X_2))} & {H_q(X_2, X_1 \cap X_2)} & {H_{q-1}(X_1)} & {H_q(C_*(X_1)+C_*(X_2))} & \cdots \\
+	{H_q(X_1 \cup X_2, X_1)} & {H_q(X)} & {H_q(X_1 \cup X_2)} & {H_q(X_1 \cup X_2, X_1)} & {H_{q-1}(X_1)} & {H_q(X_1 \cup X_2)} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["\psi"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow["{\mathrm{id}_*}"', from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow["\varphi"', from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["\psi"', from=1-4, to=2-4]
+	\arrow[from=1-5, to=1-6]
+	\arrow["{\mathrm{id}_*}"', from=1-5, to=2-5]
+	\arrow[from=1-6, to=1-7]
+	\arrow["\varphi"', from=1-6, to=2-6]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=2-5, to=2-6]
+	\arrow[from=2-6, to=2-7]
+\end{tikzcd}\]
+
+A questo punto, se la coppia è escissiva allora $\psi$ è isomorfismo e $\varphi$ lo è per il lemma dei 5. \nl
+Se vale $RHS$ allora $\varphi$ è isomorfismo e quindi $\psi$ è isomorfismo sempre per il lemma dei 5.
+\end{proof}
+
+\begin{proof} (fine della dimostrazione di Mayer Vietoris) \nl
+     
+\end{proof}
+
+\subsection{Teoria omologica}
+\begin{definition} (Categoria ammissibile) \nl
+    Data una categoria $\mathcal{C}$, con oggetti $\mathcal{A}$ di coppie di spazi, si dice che $\mathcal{C}$ è \textbf{amissibile}
+    \begin{enumerate}
+        \item $(X, A) \in \mathcal{A} \implies (X, X), (A, A), (X, \emptyset), (A, \emptyset) \in \mathcal{A}$
+        \item $(X,A) \in \mathcal{A} \implies (X \times I, A \times I) \in \mathcal{A}$
+        \item $(P, \emptyset) \in \mathcal{A}$ per ogni $P$ punto
+    \end{enumerate}
+\end{definition}
+
+\begin{definition} (Teoria omologica) \nl
+    Data una categoria $\mathcal{C}$ \textbf{ammissibile}, con oggetti $\mathcal{A}$ di coppie di spazi, una \textbf{teoria omologica} su $\mathcal{C}$ è il dato di:
+    \begin{enumerate}
+        \item Una famiglia di funtori covarianti $H_q: \mathcal{C} \to \mathrm{Ab}$ per ogni $q \geq 0$
+        \item Se $(X, A) \in \mathcal{A}$, $H_q$ è naturale. (da aggiustare)
+    \end{enumerate}
+    tali che valgono i seguenti assiomi:
+    \begin{enumerate}
+        \item (Successione della coppia) Per ogni $(X, A) \in \mathcal{A}$ esiste una successione esatta lunga in omologia:
+        \[
+            \cdots \to H_q(A) \xrightarrow{i_*} H_q(X) \xrightarrow{j_*} H_q(X, A) \xrightarrow{\Delta_q} H_{q-1}(A) \to \cdots
+        \]
+        \item (Invarianza omotopica) Siano $f, g: (X, A) \to (Y, B)$ due mappe omotope in $\mathcal{C}$. \nl
+        Allora $H_q(f) = H_q(g): H_q(X, A) \to H_q(Y, B)$ per ogni $q \geq 0$
+        \item  (Escissione) Sia $(X, A) \in \mathcal{A}$ e $U \subset A$ tale che $\bar{U} \subset \mathrm{Int}(A)$. \nl
+        Allora l'inclusione $i: (X \setminus U, A \setminus U) \to (X, A)$ induce un isomorfismo in omologia:
+        \[  
+            i_*: H_q(X \setminus U, A \setminus U) \to H_q(X, A)
+        \]
+        per ogni $q \geq 0$.
+        \item (Dimensionalità) Sia $P$ un punto, allora $H_q(P) = 0$ per ogni $q > 0$.
+        \item (Coppia compatta)
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem} (Unicità della teoria omologica) \nl
+    Esiste un'unica teoria omologica su $\mathcal{C} = {X | \text{supporti di complessi simplicali}}$ che soddisfa gli assiomi sopra elencati, ed è l'omologia singolare.
+    Dunque i gruppi di omologia singolare, omologia simpliciale e omologia delta-simplicale sono isomorfi.
+\end{theorem}
+
+\subsection{Jordan e Invarianza del dominio}
+
+\begin{definition} 
+    Uno spazio topologico $X \cong D^n$ si dice \textbf{n-cella}
+\end{definition}
+
+\begin{definition}
+    Uno spazio topologico $X$ si dice \textbf{aciclico} se $\tilde{H_q}(X) = 0$ per ogni $q \geq 0$.
+\end{definition}
+
+\begin{definition}
+    Dato $A \subset X$ si dice che $A$ \textbf{separa} $X$ se $X \setminus A$ è sconnesso.
+\end{definition}
+
+\begin{remark} \nl
+    $A \subset X$ chiuso e $X$ localmente connesso per archi. \nl
+    \[A \text{ separa } X \iff \tilde{H_0}(X \setminus A) \neq 0\].
+\end{remark}
+
+\begin{theorem}  \nl
+    Se $B \subset S^n$ una k-cella, allora $S^n \setminus B$ è aciclico. 
+\end{theorem}
+
+\begin{proof} \nl
+    Poiché $I^k \cong D^k$, consideriamo $B \cong I^k \subset S^n$ e dimostriamo per induzione su $k$.
+    \begin{enumerate}
+        \item Caso base $k = 0$. \nl
+        Allora $B = \set{x_0}$ è un punto e dunque $S^n \setminus B \cong \R^n$ è aciclico.
+        \item Passo induttivo. \nl
+        Supponiamo che la tesi sia vera per $k-1$. \nl
+        Consideriamo $B = I^k = I^{k-1} \times I \subset S^n$ e sia $h: I^k \hookrightarrow S^n$. \nl
+        Siano $B_1 = h(I^{k-1} \times [0, 1/2))$ e $B_2 = h(I^{k-1} \times (1/2, 1])$. \nl
+        Se $C = B_1 \cap B_2 = h(I^{k-1} \times \{\frac{1}{2}\})$, vale:
+        \[
+            (X \setminus B_1) \cup (X \setminus B_2) = X \setminus B  
+        \]
+        \[
+            (X \setminus B_1) \cap (X \setminus B_2) = X \setminus C
+        \]
+        si ha dunque per Mayer-Vietoris la successione esatta lunga:
+        
+
+        da finire.
+
+        \end{enumerate}
+\end{proof}
+
+\begin{theorem} \nl
+    Dato $0 \leq k < n$, se $h: S^k \hookrightarrow S^n$ è un'immersione continua allora l'immagine $h(S^k)$ separa $S^n$, in particolare:
+    \[
+        \tilde{H_q}(S^n \setminus h(S^k)) = \begin{cases}
+            \mathbb{Z} & q = n - k - 1 \\
+            0 & \text{altrimenti}
+        \end{cases}
+    \]
+\end{theorem}
+
+\begin{proof} \nl
+    Sia $S^k = E_{+}^k \cup E_{-}^k$ dove $E_{+}^k$ e $E_{-}^k$ sono le due k-celle che compongono $S^k$. \nl
+    Vale che $E_{+}^k \cap E_{-}^k \sim S^{k-1}$(si retraggono per deformazione sull'equatore). \nl
+    Siano $A = S^n \setminus h(E_{+}^k)$ e $B = S^n \setminus h(E_{-}^k)$. \nl
+    Vale che $A \cap B = S^n \setminus h(S^k)$ e $A \cup B = S^n \setminus h(S^{k-1})$. \nl
+    Per Mayer-Vietoris si ha la successione esatta lunga:
+   % https://q.uiver.app/#q=WzAsNyxbMSwwLCJcXHRpbGRle0hfe3F9fVxcbGVmdChTXm4gXFxzZXRtaW51cyBoXFxsZWZ0KFNea1xccmlnaHQpXFxyaWdodCkiXSxbMiwwLCIwIl0sWzMsMCwiXFx0aWxkZXtIX3txfX1cXGxlZnQoU15uIFxcc2V0bWludXMgaFxcbGVmdChTXntrLTF9XFxyaWdodClcXHJpZ2h0KSJdLFs0LDAsIlxcdGlsZGV7SH1fe3EtMX1cXGxlZnQoU15uIFxcc2V0bWludXMgaFxcbGVmdChTXmtcXHJpZ2h0KVxccmlnaHQpIl0sWzAsMCwiXFxjZG90cyJdLFs1LDAsIjAiXSxbNiwwLCJcXGJ1bGxldCJdLFswLDFdLFsxLDJdLFsyLDNdLFs0LDBdLFszLDVdLFs1LDYsIlxcY2RvdHMiXV0=
+\[\begin{tikzcd}
+	\cdots & {\tilde{H_{q}}\left(S^n \setminus h\left(S^k\right)\right)} & 0 & {\tilde{H_{q}}\left(S^n \setminus h\left(S^{k-1}\right)\right)} & {\tilde{H}_{q-1}\left(S^n \setminus h\left(S^k\right)\right)} & 0 & \bullet
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-5, to=1-6]
+	\arrow["\cdots", from=1-6, to=1-7]
+\end{tikzcd}\]
+
+    $\tilde{H_{q}}(A) \oplus \tilde{H_{q}}(B) = 0$ perché $A$ e $B$ sono aciclici (per il teorema precedente). \nl
+    Quindi per esattezza vale:
+    \[
+        H_{q}(S^n \setminus h(S^{k-1})) \cong H_{q-1}(S^n \setminus h(S^k))
+    \]
+    Da questo punto:
+    \[
+        \tilde{H_q}(S^n \setminus h(S^k)) \cong \tilde{H}_{q+1}(S^n \setminus h(S^{k-1})) = \dots = \tilde{H}_{q+k}(S^n \setminus h(S^0)) = \begin{cases}
+            \mathbb{Z} & q + k = n - 1 \\
+            0 & \text{altrimenti}
+        \end{cases}
+    \]
+\end{proof}
+
+\begin{theorem} [Separazione di Jordan-Brouwer] \nl
+    Sia $h: S^{n-1} \hookrightarrow S^n$ un'immersione continua. \nl
+    Allora l'immagine $h(S^{n-1})$ separa $S^n$ in due componenti connesse per archi $K_1, K_2$. \nl
+    Inoltre $\partial{K_1}, \partial{K_2} = h(S^{n-1})$
+\end{theorem}
+
+\begin{proof}
+    La prima parte segue dal teorema precedente immediatamente dato che 
+    \[
+        \tilde{H}_0(S^n \setminus h(S^{n-1})) = \mathbb{Z}
+    \]
+    poiché $n - (n-1) - 1 = 0$. \nl
+    La parte che resta da dimostrare è che i bordi delle due componenti sono uguali a $h(S^{n-1})$. \nl
+    Innanzitutto vale $\partial{K_1}, \partial{K_2} \subset h(S^{n-1})$ perché vale $\partial K_1 \cap K_2 = K_1 \cup \partial K_2$. \nl
+    L'altro contenimento è più complicato. \nl
+    Sia $x \in h(S^{n-1})$ e mostriamo che per ogni $U \subset S^n$ un intorno aperto di $x$, si ha $U \cap h(S^{n-1}) \neq \emptyset$. \nl
+    Sia $A \subset U$ intorno aperto di $x$ tale che $h(S^{n-1}) \setminus A  \cong D^{n-1}$. \nl
+    Intanto $S^n \setminus (h(S^{n-1}) \setminus A)$ è connesso per archi per il lemma precedente. \nl
+    A questo punto se senza perdita di generalità supponiamo che $A \cap K_2 = \emptyset$, potrei scrivere:
+    \[
+        S^n \setminus (h(S^{n-1}) \setminus A) = (K_1 \cup A) \cup K_2
+    \]
+    Ma questo è assurdo perché il lato sinistro è connesso per archi mentre il lato destro no. \nl
+    Dunque $A$ interseca entrambe le componenti $K_1$ e $K_2$ e quindi $x \in \partial K_1$ e $x \in \partial K_2$.
+
+\end{proof}
+
+\begin{example} (Sfera cornuta di Alexander)
+    Esiste un'immersione continua $h: S^2 \hookrightarrow \R^3$ tale che l'immagine $h(S^2)$ ha complementare non semplicemente connesso.
+\end{example}
+
+\begin{corollary} \nl
+    Se $h: S^{n-1} \hookrightarrow \R^n$ è un'immersione continua allora continua a valere la tesi del teorema di separazione di Jordan-Brower.
+\end{corollary}
+
+\begin{corollary} (Teorema classico della curva di Jordan) \nl
+    Sia $h: S^1 \hookrightarrow \R^2$ un'immersione continua. \nl
+    Allora l'immagine $h(S^1)$ separa $\R^2$ in due componenti connesse per archi $K_1, K_2$. \nl
+    Inoltre $\partial{K_1}, \partial{K_2} = h(S^1).$ \nl
+    $K_1$ è limitata ed è detto \textbf{interno} e $K_2$ non lo è ed è detto \textbf{esterno}.
+\end{corollary}
+
+\subsection{Classificazione delle 2-varietà}
+
+\begin{definition} [Omologia locale]
+    Sia $X$ uno spazio topologico e $x \in X$. \nl
+    La \textbf{omologia locale} di $X$ in $x$ è definita come:
+    \[
+        H_q(X, X \setminus x) := H_q(X, X \setminus \set{x})
+    \]
+\end{definition}
+
+\begin{lemma}
+    Sia $X$ uno spazio topologico e $A$ è un intorno di $x$. \nl
+    Allora vale:
+    \[
+        H_q(X, X \setminus \set{x}) \cong H_q(A, A \setminus \set{x})
+    \]
+\end{lemma}
+
+\begin{proof} \nl
+    Si può dimostrare usando l'escissione considerando $U = X \setminus A$. \nl
+    A quel punto poiché $\bar{U} \subset X \setminus \set{x}$(vero perché $A$ è intorno di $x$), si ha che l'inclusione:
+    \[
+        i: (A, A \setminus \set{x}) \hookrightarrow (X, X \setminus \set{x})
+    \]
+    induce un isomorfismo in omologia.
+\end{proof}
+
+\begin{remark}
+    Data la coppia $(A, B)$ e $i: C \hookrightarrow B$ retratto di deformazione di $B$,
+    si ha un isomorfismo in omologia:
+    \[
+        H_q(A, B) \cong H_q(A, C)
+    \]
+    Segue dal lemma dei 5 e dalla successione della coppia.
+    Questo permette di ricavare il teorema successivo in maniera ovvia.
+\end{remark}
+
+\begin{theorem}
+    Siano $U \subset \R^n$ e $V \subset \R^m$ entrambi aperti.
+    \[
+        U \cong V \iff n = m
+    \]
+\end{theorem}
+
+\begin{definition} [n-varietà topologica] \nl
+    Uno spazio topologico $X$ di Hausdorff si dice \textbf{n-varietà topologica} se per ogni $x \in X$ esiste un intorno aperto $U$ di $x$ e $V \subset \R^n$ aperto tali che 
+    \[x \in U \cong V \subset \R^n\].
+\end{definition}
+
+\section{Omologia cellulare}
+
+\subsection{CW-complessi}
+\begin{definition} [CW-complessi]
+    Si dice che uno spazio topologico $X$ ha struttura di \textbf{CW-complesso} se può essere cosrtruito nella seguente maniera:
+    \begin{enumerate}
+        \item Si parte da un insieme discreto di punti $X_0$ detto \textbf{0 scheletro}.
+        \item Si costruisce il \textbf{n-scheletro} $X_n$ a partire da $X_{n-1}$ nella seguente maniera: \nl
+         \[
+         X_n = X_{n-1} \cup \bigcup_{\alpha \in S_n} \bar{e_\alpha^n}  
+         \]
+         dove $e_\alpha^n$ sono n-celle attaccate tramite mappe continue
+         \[\varphi_\alpha^n: \partial D^n \cong S^{n-1} \to X_{n-1}\]
+         dette \textbf{funzioni di attaccamento}, che identificano il bordo della n-cella con una parte di $X_{n-1}$.
+         La funzione di attaccamento si può estendere ad una funzione continua:
+         \[
+            \Phi_\alpha^n: D^n \to X_n
+        \]
+        detta \textbf{funzione caratteristica}, tale che
+        \[
+        \Phi_\alpha^n\big|_{\mathrm{Int}(D^n)}:\mathrm{Int}(D^n)\xrightarrow{\ \cong\ } e_\alpha^n,
+        \]
+        ovvero $\Phi_\alpha^n$ ristretto a $\mathrm{Int}(D^n)$ è un omeomorfismo sulla sua immagine $e_\alpha^n$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark} \nl
+    $\varphi_\alpha(\partial D^n) \subset X_{n-1}$ può non essere una $(n-1)$-cella. \nl 
+    Se vale che $\varphi_\alpha(\partial D^n)$ è una $(n-1)$-cella e $\varphi_\alpha$ sono tutti iniettivi, allora $X$ si dice essere un \textbf{CW-complesso regolare}.
+\end{remark}
+
+\begin{proposition} \nl
+    Sia $X$ un CW-complesso, se $K \subset X$ è compatto allora $K$ è contenuto in un sottocomplesso di $X$ finitio. 
+\end{proposition}
+
+\begin{theorem} [Definizione alla Whitehead di CW-complesso]
+    $X$ spazio topologico di Hausdorff è un CW-complesso se e solo se data esiste una famiglia $\Phi_\alpha: D^n_\alpha \to X$ di mappe continue tali che:
+    \begin{enumerate}
+        \item \[
+            \Phi_\alpha^n\big|_{\mathrm{Int}(D^n)}:\mathrm{Int}(D^n)\xrightarrow{\ \cong\ } e_\alpha^n,
+        \]
+        è omeomorfismo sulla sua immagine indicata con $e_\alpha^n$.
+        E vale \[
+            X = \bigcup_{\alpha} \Phi_\alpha^n(D_\alpha^n)
+        \]
+        \item \[
+        \Phi_\alpha^n(\partial D^n) \subset X_{n-1},
+        \]
+        dove \[
+            X_n := \bigcup_{k \leq n \\ \alpha \in S_k} e_\alpha^k.
+        \]
+        \item \[
+            C \subset X \text{ chiuso } \iff \Phi_\alpha^{-1}(C) \subset D_\alpha^n \text{ chiuso } \forall n \forall \alpha,
+        \]
+        che è equivalente a chiedere che la topologia su $X$ è la meno fine a rendere continue tutte le $\Phi_\alpha^n$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+    Per ogni $X_n$ scheletro di un CW-complesso $X$ esiste un intorno $U$ di $X_n$ in $X$ tale che $U$ si retragga per deformazione su $X_n$.
+\end{proposition}
+
+\begin{definition} [Complesso di catene cellulare] \nl
+    Sia $X$ un CW-complesso con scheletri $\set{X_n}_{n \geq 0}$. \nl
+    Si può considerare la seguente composizione di funzioni continue:
+    \[
+        d_q: H_q(X_q, X_{q-1}) \xrightarrow{\partial_q} H_{q-1}(X_{q-1}) \xhookrightarrow{i_*}H_{q-1}(X_{q-1}, X_{q-2}),
+    \]
+    ovvero $d_q = i \circ \partial_q$. \nl
+    Si può dimostrare che $d_q \circ d_{q+1} = 0$ e dunque: \nl
+     posto $C_q := H_q(X_q, X_{q-1})$, si ottiene un complesso di catene $(C_*, d_*)$ detto \textbf{complesso delle catene cellulari} di $X$.
+\end{definition}
+
+\begin{proposition} \nl
+    Indicato con $e_\alpha^q$ le q-celle di $X$ e $\interior{e_q^\alpha} := \bar{e_\alpha^q} \setminus \mathrm{Int}(e_\alpha^q) = \Phi_\alpha^q(\partial D^q_\alpha)$, vale:
+    La mappa:
+    \[
+        \Phi_\alpha: (D^q_\alpha, \partial D^q_\alpha) \to (\bar{e^q_\alpha}, {e^q_\alpha})
+    \]
+    induce un isomorfismo in omologia:
+    \[
+        \Phi_{\alpha *}: H_q(D^q_\alpha, \partial D^q_\alpha) \xrightarrow{\ \cong\ } H_q(\bar{e^q_\alpha}, \interior{e^q_\alpha})
+    \]
+\end{proposition}
+
+\begin{proof}
+    Per $q=0$ non c'è nulla da dimostrare(un punto è sempre omemorfo ad un altro punto). \nl
+    Per $q > 0$ si ha il seguente diagramma:
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJIX3EoRF5xLCBcXHBhcnRpYWwgRF5xKSJdLFswLDEsIkhfcShEXnEsIERecSBcXHNldG1pbnVzIFxcezBcXH0pIl0sWzAsMiwiSF9xKFxcbWF0aHJte0ludH0oe0RecX0pLCBcXG1hdGhybXtJbnR9KHtEXnF9KSBcXHNldG1pbnVzIFxcezBcXH0pIl0sWzEsMCwiIEhfcShcXGJhcntlXnFfXFxhbHBoYX0sIFxcaW50ZXJpb3J7ZV5xX1xcYWxwaGF9KSJdLFsxLDEsIiBIX3EoXFxiYXJ7ZV5xX1xcYWxwaGF9LCBcXGJhcntlXnFfXFxhbHBoYX0gXFxzZXRtaW51cyBwKSJdLFsxLDIsIiBIX3EoZV5xX1xcYWxwaGEsIGVecV9cXGFscGhhIFxcc2V0bWludXMgcCkiXSxbMCwxLCJcXGNvbmciLDJdLFsxLDIsIlxcY29uZyIsMl0sWzIsNSwiXFxjb25nIiwyXSxbNCw1LCJcXGNvbmciXSxbMyw0LCJcXGNvbmciXSxbMCwzLCIoXFxQaGlfXFxhbHBoYSlfKiJdXQ==
+\[\begin{tikzcd}
+	{H_q(D^q, \partial D^q)} & { H_q(\bar{e^q_\alpha}, \interior{e^q_\alpha})} \\
+	{H_q(D^q, D^q \setminus \{0\})} & { H_q(\bar{e^q_\alpha}, \bar{e^q_\alpha} \setminus p)} \\
+	{H_q(\mathrm{Int}({D^q}), \mathrm{Int}({D^q}) \setminus \{0\})} & { H_q(e^q_\alpha, e^q_\alpha \setminus p)}
+	\arrow["{(\Phi_\alpha)_*}", from=1-1, to=1-2]
+	\arrow["\cong"', from=1-1, to=2-1]
+	\arrow["\cong", from=1-2, to=2-2]
+	\arrow["\cong"', from=2-1, to=3-1]
+	\arrow["\cong", from=2-2, to=3-2]
+	\arrow["\cong"', from=3-1, to=3-2]
+\end{tikzcd}\]
+    Le mappe sopra sono omeomorfismi perché vengono da retrazioni per deformazione, mentre quelle laterali sotto per il teorema di escissione.
+    La mappa in basso è un isomorfismo perché viene dall'omeomorfismo dato dalla mappa caratteristica $\Phi_\alpha$ ristretto a $\mathrm{Int}(D^q)$.
+    Quindi per commutatività del diagramma anche la mappa in alto è un isomorfismo.
+\end{proof}
+
+\begin{proposition}
+    \[
+        H_q(X, X_{n-1}) \cong \bigoplus_{\alpha \in S_n} H_q(D^n, \partial D^n) \cong \begin{cases}
+            \mathbb{Z}^n & q = n \\
+            0 & \text{altrimenti}
+        \end{cases}
+    \]
+\end{proposition}
+
+\begin{remark}
+    La mappa $d_q: H_q(X_q, X_{q-1}) \to H_{q-1}(X_{q}, X_{q-1})$ è la mappa di una successione della tripla.
+\end{remark}
+
+\begin{lemma}
+    \[
+        H_q(X_p) = 0 \quad \text{se } q > p,
+    \]
+    ovvero l'omologia di uno scheletro è nulla nelle dimensioni maggiori della sua.
+\end{lemma}
+
+\begin{proof}
+    Si fa
+\end{proof}
+
+\begin{lemma} \nl
+    L'inclusione $i: X_p \hookrightarrow X$ induce un isomorfismo in omologia per ogni $q \leq p$:
+    \[
+        i_*: H_q(X_p) \xrightarrow{\ \cong\ } H_q(X)
+    \]
+\end{lemma}
+
+\begin{theorem} [Omologia cellulare] \nl
+    Sia $X$ un CW-complesso, e $H_q(C_*, d_*)$ l'omologia nel senso algebrico del complesso delle catene cellulari di $X$. \nl
+    Allora 
+    \[
+        H_q(C_*, d_*) \cong H_q(X) \quad \forall q \in \Z.
+    \]
+\end{theorem}
+
+\begin{proof}
+    Per ogni $q$ si considera il seguente diagramma:
+ 
 \end{proof}
 
 \end{document}
