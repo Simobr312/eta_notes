@@ -513,6 +513,39 @@ Per vedere i disegni di questa parte, che sono molto importanti, guardare le not
     Dunque per il lemma del cinque anche $i_*$ è isomorfismo in omologia.
     \end{proof}
 
+    \begin{definition} [Buona coppia]
+        Una coppia $(X, A)$ di spazi topologici si dice \textbf{buona} se $A$ è chiuso ed è retratto di deformazione di un suo intorno in $X$.
+    \end{definition}
+
+    \begin{corollary} [Buona coppia] \nl
+        Se $(X, A)$ è una buona coppia allora
+        \[
+            H_q(X, A) \cong \tilde{H}_q(\frac{X}{A})
+        \]
+    \end{corollary}
+
+    \begin{proof} \nl
+        % https://q.uiver.app/#q=WzAsNixbMCwwLCJIX3EoWCxBKSJdLFsxLDAsIkhfcShYLFUpIl0sWzIsMCwiSF9xKFggXFxzZXRtaW51cyBBLCBVIFxcc2V0bWludXMgQSkiXSxbMCwxLCJIX3EoWCAvIEEsIFtBXSkiXSxbMSwxLCJIX3EoWCBcXHNldG1pbnVzIEEsIFxccGkoVSkpIl0sWzIsMSwiSF9xKFxcZnJhY3tYfXtBfVxcc2V0bWludXMgW0FdLCBcXHBpKFUpIFxcc2V0bWludXMgW0FdKSJdLFswLDEsIlxcY29uZyJdLFsxLDIsIlxcY29uZyJdLFszLDQsIlxcY29uZyJdLFs0LDUsIlxcY29uZyJdLFsyLDUsIlxcY29uZyIsMl0sWzAsMywiXFxjb25nIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \[\begin{tikzcd}
+        {H_q(X,A)} & {H_q(X,U)} & {H_q(X \setminus A, U \setminus A)} \\
+        {H_q(X / A, [A])} & {H_q(X \setminus A, \pi(U))} & {H_q(\frac{X}{A}\setminus [A], \pi(U) \setminus [A])}
+        \arrow["\cong", from=1-1, to=1-2]
+        \arrow["\cong"', dashed, from=1-1, to=2-1]
+        \arrow["\cong", from=1-2, to=1-3]
+        \arrow["\cong"', from=1-3, to=2-3]
+        \arrow["\cong", from=2-1, to=2-2]
+        \arrow["\cong", from=2-2, to=2-3]
+    \end{tikzcd}\]
+        Le frecce orizzontali a sinistra sono isomorfismi perché $U$ e $A$ sono omotopicamente equivalenti, mentre quelle a destra per il teorema di escissione. \nl
+        Ci sarebbe da verificare che $\pi(U)$ è un intorno di $[A]$ in $X / A$ e che $[A]$ è retratto di deformazione di $\pi(U)$. \nl
+        L'isomorfismo verticale a destra si ha perché la proiezione al quoziente su $X \setminus A$ è un omeomorfismo dato che stiamo togliendo $A$.
+        Ne segue che esiste un isomorfismo verticale a sinistra. \nl
+        Infine si nota che per ogni spazio topologico $X$ vale
+        \[
+            H_q(X, x_0) \cong \tilde{H}_q(X)
+        \]
+    \end{proof}
+
     \begin{theorem} [Lemma dei 5] \nl
         Sia il seguente diagramma commutativo con righe esatte:
         \[
@@ -871,6 +904,29 @@ Se vale $RHS$ allora $\varphi$ è isomorfismo e quindi $\psi$ è isomorfismo sem
     Sia $X$ un CW-complesso, se $K \subset X$ è compatto allora $K$ è contenuto in un sottocomplesso di $X$ finitio. 
 \end{proposition}
 
+\begin{proof} \nl
+    Si supponga per assurdo che esista una successione infinita $S = {x_i}_{i \in \N} \subset K$ tale che
+    ogni $x_i$ appartiene a una cella diversa. \nl
+    Assumendo che $S \cap X_{n-1}$ sia chiuso si può dimostrare che $S \cap X_n$ è chiuso. \nl
+    Infatti $\varphi^{-1}(S) \subset \partial D^n$ è chiuso perché $\partial D^n$ è compatto, ma allora lo è anche $\Phi^{-1}(S) \subset D^n$ poiché al più stiamo aggiungendo un punto ad un chiuso. \nl
+    Quindi $S$ è chiuso in $X$. Allo stesso modo si dimostra che questo vale per ogni sottoinsieme di $S$, dunque $S$ ha la topologia discreta. \nl
+    Ma questo è assurdo perché $S$ compatto con la topologia discreta implica che $S$ è finito. \nl
+    Si è mostrato che $K$ è contenuto in un numero finito di celle, va mostrato che un numero finito di celle è contenuto in un sottocomplesso finitio. \nl
+    Poiché unione finita di sottocomplessi finiti è un sottocomplesso finito, basta mostrare che ogni cella è contenuta in un sottocomplesso finito. \nl
+    Sia dunque $e_\alpha^n$ una n-cella, per costruire un sottocomplesso finito che la contenga, si consideri l'immagine della funzione di attaccamento $\varphi_\alpha^n(\partial D^n) \subset X_{n-1}$. \nl
+    Poiché $\partial D^n$ è compatto, per l'ipotesi iniziale esiste un sottocomplesso finito $Y_{n-1} \subset X_{n-1}$ che contiene $\varphi_\alpha^n(\partial D^n)$. \nl
+    Si può dunque costruire un sottocomplesso finito $Y_n = Y_{n-1} \cup \bar{e_\alpha^n}$ che contiene $e_\alpha^n$.
+\end{proof}
+
+\begin{proposition} \nl
+    I CW-complessi sono spazi normali, in particolare Hausdorff.
+\end{proposition}
+
+\begin{proof} \nl
+    Innanzitutto è facile mostrare che i punti sono chiusi, dato che vengono rimandati tramite $\Phi_\alpha^n$ a punti di $D^n$ che sono chiusi. \nl
+    Supponiamo ora di avere due insiemi chiusi disgiunti $A, B \subset X$. \nl
+\end{proof}
+
 \begin{theorem} [Definizione alla Whitehead di CW-complesso]
     $X$ spazio topologico di Hausdorff è un CW-complesso se e solo se data esiste una famiglia $\Phi_\alpha: D^n_\alpha \to X$ di mappe continue tali che:
     \begin{enumerate}
@@ -981,8 +1037,262 @@ Se vale $RHS$ allora $\varphi$ è isomorfismo e quindi $\psi$ è isomorfismo sem
 \end{theorem}
 
 \begin{proof}
-    Per ogni $q$ si considera il seguente diagramma:
- 
+    Per ogni $n$ si considera il seguente diagramma:
+
+    % https://q.uiver.app/#q=WzAsMTEsWzEsMywiSF97bisxfShYX3tuKzF9LFhfbikiXSxbMywzLCJIX3tufShYX3tufSxYX3tuLTF9KSJdLFs1LDMsIkhfe24tMX0oWF97bi0xfSxYX3tuLTJ9KSJdLFsyLDIsIkhfbihYX24pIl0sWzMsMSwiSF9uKFhfe24rMX0pIl0sWzQsNCwiSF97bi0xfShYX3tuLTF9KSJdLFsxLDEsIjAiXSxbNCwwLCIwIFxcY29uZyBIX3tufShYX3tuKzF9LFhfbikiXSxbNSw1LCIwIFxcY29uZyBIX3tuLTF9KFhfe259KSJdLFswLDMsIlxcY2RvdHMiXSxbNiwzLCJcXGNkb3RzIl0sWzksMF0sWzAsMSwiZF97bisxfSJdLFsxLDIsImRfe259Il0sWzIsMTBdLFswLDMsIlxccGFydGlhbF97bisxfSJdLFszLDEsImpfbiJdLFszLDRdLFs0LDddLFs2LDNdLFsxLDUsIlxccGFydGlhbF97bn0iXSxbNSwyLCJqX3tuLTF9Il0sWzUsOF1d
+    \[\begin{tikzcd} [row sep=small, column sep=small, nodes={scale=0.85, transform shape, font=\small}]
+        &&&& {0 \cong H_{n}(X_{n+1},X_n)} \\
+        & 0 && {H_n(X_{n+1}) \cong H_n(X)} \\
+        && {H_n(X_n)} \\
+        \cdots & {H_{n+1}(X_{n+1},X_n)} && {H_{n}(X_{n},X_{n-1})} && {H_{n-1}(X_{n-1},X_{n-2})} & \cdots \\
+        &&&& {H_{n-1}(X_{n-1})} \\
+        &&&&& {0 \cong H_{n-1}(X_{n})}
+        \arrow[from=2-2, to=3-3]
+        \arrow[from=2-4, to=1-5]
+        \arrow[from=3-3, to=2-4]
+        \arrow["{j_n}", from=3-3, to=4-4]
+        \arrow[from=4-1, to=4-2]
+        \arrow["{\partial_{n+1}}", from=4-2, to=3-3]
+        \arrow["{d_{n+1}}", from=4-2, to=4-4]
+        \arrow["{d_{n}}", from=4-4, to=4-6]
+        \arrow["{\partial_{n}}", from=4-4, to=5-5]
+        \arrow[from=4-6, to=4-7]
+        \arrow["{j_{n-1}}", from=5-5, to=4-6]
+        \arrow[from=5-5, to=6-6]
+    \end{tikzcd}\]
+
+    \begin{enumerate}
+        \item Poiché $H_n(X_{n+1}, X_n) = 0$, vale che $H_n(X_{n+1}) \cong \frac{H_n(X_n)}{\mathrm{Im(\partial_{n+1})}}$. 
+        \item Per il lemma precedente vale che $H_n(X_{n+1}) \cong H_n(X)$, dunque $H_n(X) \cong \frac{H_n(X_n)}{\mathrm{Im(\partial_{n+1})}}$.
+        \item $j_n$ è iniettiva dunque $H_n(X_n) \cong \mathrm{Im}(j_n)$.
+        \item Poiché $j_n$ è iniettiva e $d_{n+1} = j_n \circ \partial_{n+1}$, si ha che $\mathrm{Im}(d_{n+1}) \cong \mathrm{Im}(\partial_{n+1})$ e $\mathrm{Ker}(d_{n+1}) \cong \mathrm{Ker}(\partial_{n+1})$.
+        \item Dunque $H_n(X_n) \cong \mathrm{Im}(j_n) \cong \mathrm{Ker}(\partial_n) \cong \mathrm{Ker}(d_n)$.
+        \item Infine $H_n(X) \cong \frac{H_n(X_n)}{\mathrm{Im}(\partial_{n+1})} \cong \frac{\mathrm{Ker}(d_n)}{\mathrm{Im}(d_{n+1})} = H_n(C_*, d_*)$.
+    \end{enumerate}
 \end{proof}
 
+\begin{example} \nl
+    \begin{enumerate}
+        \item Calcolo dell'omologia di $X = \C \mathbb{P}^n$. \nl
+        Grazie alle carte affini è possibile dare una struttura di CW-complesso a $\C \mathbb{P}^n$ con una cella in ogni dimensione pari fino a $2n$:
+        \[
+            \C \mathbb{P}^n = \C^n \cup \C \mathbb{P}^{n-1} = \cdots = \C^n \cup \cdots \cup \C = \bigcup_{k=0}^n e^{2k}
+        \]
+        Dunque il complesso delle catene cellulare è:
+        \[
+            0 \to \mathbb{Z} \xrightarrow{0} 0 \xrightarrow{0} \mathbb{Z} \xrightarrow{0} \cdots \xrightarrow{0} \mathbb{Z} \to 0
+        \]
+        e dunque l'omologia è:
+        \[
+            H_q(\C \mathbb{P}^n) = \begin{cases}
+                \mathbb{Z} & q \text{ pari }, 0 \leq q \leq 2n \\
+                0 & \text{ altrimenti }
+            \end{cases}
+        \]
+        \item Calcolo dell'omologia di $X = \R \mathbb{P}^n$. \nl
+        Anche in questo caso le carte affini inducono una struttura di CW-complesso con una cella in ogni dimensione fino a $n$:
+        \[
+            \R \mathbb{P}^n = \R^n \cup \R \mathbb{P}^{n-1} = \cdots = \R^n \cup \cdots \cup \R = \bigcup_{k=0}^n e^{k}.
+        \]
+        Tuttavia c'è bisogno di teoria per il calcolo delle mappe di bordo del complesso cellulare.
+        Assumendo risultati che vedremo in seguito, si ha che il complesso delle catene cellulare è:
+        \[
+            0 \to H_q(X) = \mathbb{Z} \xrightarrow{1 + (-1)^{q}} H_q(X) = \mathbb{Z} \xrightarrow{1 + (-1)^{q-1}} \mathbb{Z} \xrightarrow{2} H_0(X) = \mathbb{Z} \xrightarrow{0} \tilde{H}_0(X) = \mathbb{Z} \xrightarrow{} 0
+        \]
+        Dunque l'omologia è:
+        \[
+            H_q(\R \mathbb{P}^n) = \begin{cases}
+                \mathbb{Z} & q = 0 \\
+                \mathbb{Z}_2 & q \text{ dispari }, 1 \leq q < n \\
+                \mathbb{Z} & q = n \text{ e } n \text{ dispari } \\
+                0 & \text{ altrimenti }
+            \end{cases}
+        \]
+    \end{enumerate}
+\end{example}
+
+\begin{proposition} \nl
+    Dato $X$ un CW-complesso, la coppia $(X, X_{n-1})$ è una buona coppia. \nl1
+\end{proposition}
+
+\begin{proposition} [Formula per la mappa di bordo cellulare] \nl
+    Sia $X$ un CW-complesso e $d_n: H_n(X_n, X_{n-1}) \to H_{n-1}(X_{n-1}, X_{n-2})$ la mappa di bordo cellulare. \nl
+    Allora per ogni $\alpha \in S_n$ si ha:
+    \[
+        d_n(e_\alpha^n) = \sum_{\beta \in S_{n-1}} \deg(\Delta_{\alpha \beta}^n) e_\beta^{n-1}
+    \]
+    dove $\Delta_{\alpha \beta}^n: S^{n-1} \to S^{n-1}$ è la composizione:
+    \[
+        S^{n-1}_\alpha \xrightarrow{\varphi_\alpha^n} X_{n-1} \xrightarrow{q_\beta} X_{n-1}/(X_{n-1} \setminus e_\beta^{n-1}) \cong S^{n-1}_\beta
+    \]
+    con $q_\beta$ la proiezione canonica.
+\end{proposition}
+
+\begin{proof}
+    Si consideri il seguente diagramma commutativo:
+    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJIX24oWF97bn0sIFhfe24tMX0pIl0sWzEsMCwiSF97bi0xfShYX3tuLTF9LCBYX3tuLTJ9KSJdLFsxLDEsIkhfe24tMX0oWF97bi0xfSkiXSxbMiwwLCJIX3tuLTF9KFhfe24tMX0vWF97bi0yfSwgW1hfe24tMn1dKSJdLFsyLDEsIlxcdGlsZGV7SH1fe24tMX0oWF97bi0xfS9YX3tuLTJ9KSJdLFsyLDIsIlxcdGlsZGV7SH1fe24tMX0oU157bi0xfV9cXGJldGEpIl0sWzEsMiwiSF97bi0xfShTXntuLTF9X1xcYWxwaGEpIl0sWzAsMiwiSF97bn0oRF5uX1xcYWxwaGEsIFNee24tMX1fXFxhbHBoYSkiXSxbMSwzLCJcXGNvbmciXSxbMyw0LCJcXGNvbmciXSxbMiw0LCJcXHBpIl0sWzIsMSwial8qIiwyXSxbMCwxLCJkX3EiXSxbMCwyLCJcXHBhcnRpYWxfcSJdLFs3LDAsIihcXFBoaV9cXGFscGhhKV8qIl0sWzYsMiwiKFxcdmFycGhpX1xcYWxwaGEpXyoiXSxbNCw1LCJcXHBpX1xcYmV0YSJdLFs3LDZdLFs2LDUsIlxcRGVsdGFfe1xcYWxwaGFcXGJldGF9Il1d
+\[\begin{tikzcd}
+	& {H_{n-1}(X_{n-1}, X_{n-2})} & {H_{n-1}(X_{n-1}/X_{n-2}, [X_{n-2}])} \\
+	{H_n(X_{n}, X_{n-1})} & {H_{n-1}(X_{n-1})} & {\tilde{H}_{n-1}(X_{n-1}/X_{n-2})} \\
+	{H_{n}(D^n_\alpha, S^{n-1}_\alpha)} & {H_{n-1}(S^{n-1}_\alpha)} & {\tilde{H}_{n-1}(S^{n-1}_\beta)}
+	\arrow["\cong", from=1-2, to=1-3]
+	\arrow["\cong", from=1-3, to=2-3]
+	\arrow["{d_q}", from=2-1, to=1-2]
+	\arrow["{\partial_q}", from=2-1, to=2-2]
+	\arrow["{j_*}"', from=2-2, to=1-2]
+	\arrow["\pi", from=2-2, to=2-3]
+	\arrow["{\pi_\beta}", from=2-3, to=3-3]
+	\arrow["{(\Phi_\alpha)_*}", from=3-1, to=2-1]
+	\arrow[from=3-1, to=3-2]
+	\arrow["{(\varphi_\alpha)_*}", from=3-2, to=2-2]
+	\arrow["{\Delta_{\alpha\beta}}", from=3-2, to=3-3]
+\end{tikzcd}\]
+\end{proof}
+
+\begin{definition} [Caratteristica di Eulero]
+    Per il teorema di struttura dei gruppi abeliani finitamente generati, ogni gruppo abeliano finitamente generato ha una parte libera ed una parte di torsione. \nl
+    Se si definisce il rango di un gruppo abeliano finitamente generato come il rango della sua parte libera, si possono definire i
+    numeri di Betti di uno spazio $X$ come \[
+        b_q(X) := \mathrm{rank}(H_q(X)).
+    \]
+    La \textbf{caratteristica di Eulero} di $X$ è definita come:
+    \[
+        \chi(X) := \sum_{q=0}^{\infty} (-1)^q b_q(X).
+    \] 
+
+\end{definition}
+
+\begin{definition}
+    La caratteristica di Eulero si pùo definire analogamente per un complesso di catene $(C_*, d_*)$ come:
+    \[
+        \chi(C_*, d_*) := \sum_{q=0}^{\infty} (-1)^q \mathrm{rank}(H_q(C_*, d_*)).
+    \]
+\end{definition}
+
+\begin{proposition}
+    Un complesso di catene $(C_*, d_*)$ aciclico ha caratteristica di Eulero nulla.
+\end{proposition}
+
+
+\section{Omologia e Coomologia a coefficienti in un modulo}
+
+\subsection{}
+\begin{definition} [Prodotto tensoriale di gruppi abeliani] \nl
+    Siano $A, B$ due gruppi abeliani, si indica con $F(A, B)$ il gruppo abeliano libero generato da tutte le coppie $(a, b)$ con $a \in A$ e $b \in B$. \nl
+    Si definisce il \textbf{prodotto tensoriale} di $A$ e $B$ come il quoziente:
+    \[
+        A \otimes B := F(A, B) / R
+    \]
+    dove $R$ è il sottogruppo generato dagli elementi:
+    \begin{enumerate}
+        \item $(a_1 + a_2, b) - (a_1, b) - (a_2, b)$ per ogni $a_1, a_2 \in A$ e $b \in B$,
+        \item $(a, b_1 + b_2) - (a, b_1) - (a, b_2)$ per ogni $a \in A$ e $b_1, b_2 \in B$,
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem} [Proprietà universale del prodotto tensoriale] \nl
+    Dati $A, B$ gruppi abeliani, $A \times B$ prodotto diretto e $A \otimes B$ prodotto tensoriale, vale che: \nl
+    Per ogni gruppo abeliano $G$ e ogni applicazione bilineare $\varphi: A \times B \to G$ esiste un'unica applicazione di gruppi abeliani $\tilde{\varphi}: A \otimes B \to G$ tale che il seguente diagramma commuta:
+    \[
+    \begin{tikzcd}
+        A \times B \arrow[r, "\varphi"] \arrow[d, "\otimes"] & G \\
+        A \otimes B \arrow[ru, "\tilde{\varphi}"']
+    \end{tikzcd}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Sia
+    \[
+        \Phi: F(A, B) \to G: (a, b) \mapsto \varphi(a, b).
+    \]
+    che esiste per proprietà universale dei gruppi liberi. \nl
+    Poiché $\varphi$ è bilineare, si ha che $R \subset \ker(\Phi)$, dunque esiste un'unica applicazione $\tilde{\varphi}: A \otimes B \to G$ tale che $\tilde{\varphi} \circ \otimes = \Phi$ per il primo teorema di isomorfismo.
+\end{proof}
+
+\begin{remark}
+    Per ogni gruppo abeliano $G$ si ha che \[
+        \mathbb{Z} \otimes G \cong G,
+    \]
+    dove l'isomorfismo è dato da $n \otimes g \mapsto ng$.
+\end{remark}
+
+\begin{proposition}
+    Data una successione esatta corta di gruppi abeliani:
+    \[
+        0 \to A \xrightarrow{i} A' \xrightarrow{\pi} A'' \to 0,
+    \]
+    si ha una successione di gruppi abeliani corta esatta a destra:
+    \[
+        A \otimes G \xrightarrow{i \otimes \mathrm{id}} A' \otimes G \xrightarrow{\pi \otimes \mathrm{id}} A'' \otimes G \to 0.
+    \]
+    che in generale non è esatta a sinistra.
+\end{proposition}
+
+\begin{example} 
+    In generale la successione non è esatta a sinistra, infatti data la successione esatta corta:
+    \[
+        0 \to \mathbb{Z} \xrightarrow{2} \mathbb{Z} \xrightarrow{\pi} \mathbb{Z} / \mathbb{Z}_2 \to 0,
+    \]
+    si ha la successione:
+    \[
+        \mathbb{Z} \times \mathbb{Z}_2 \xrightarrow{2 \otimes \mathrm{id}} \mathbb{Z} \times \mathbb{Z}_2 \xrightarrow{\pi \otimes \mathrm{id}} (\mathbb{Z} / \mathbb{Z}_2) \times \mathbb{Z}_2 \to 0,
+    \]
+    ma vale che $2 \otimes 1 = 1 \otimes 2 = 1 \otimes 0 = 0$ e dunque la mappa a sinsitra è nulla e di conseguenza non iniettiva.
+\end{example}
+
+\begin{proof}
+    La mappa $\pi \otimes \mathrm{id}$ è suriettiva perché per ogni $(a'', g) = (\pi \otimes \mathrm{id})(a', g)\in A'' \otimes G$ dove $a' \in A'$ è dato dalla surgettività di $\pi$. \nl
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item $
+            A \otimes B \cong B \otimes A
+        $
+        \item $
+            (A \otimes B) \otimes C \cong A \otimes (B \otimes C)
+        $
+        \item Se $A,B$ liberi con base rispettivamente $\set{a_i}_{i \in I}$ e $\set{b_j}_{j \in J}$, allora $A \otimes B$ è libero con base $\set{a_i \otimes b_j}_{i \in I, j \in J}$.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Dato un complesso $(C_*, \partial_*)$ di moduli liberi e un gruppo abeliano libero $G$, si definisce il \textbf{complesso tensore} come il complesso $(C_* \otimes G, \partial_* \otimes \mathrm{id})$ dove:
+    \[
+        (C_* \otimes G)_q := C_q \otimes G,
+    \]
+    e la sua omologia
+    \[
+        H_q(C_* \times G) := \frac{\ker(\partial_q \otimes 1)}{\Img(\partial_{q-1} \otimes 1)}
+    \]
+\end{definition}
+
+\begin{remark}
+    Un morfismo di complessi $\varphi: C_* \to D_*$ induce un morfismo di complessi $\varphi \otimes \id: C_* \otimes G \to C_* \otimes G$.
+\end{remark}
+
+\begin{remark}
+    Data una successione esatta corta di complessi di moduli \textbf{liberi}:
+    \[
+        0 \to A_* \xrightarrow{f_*} B_* \xrightarrow{g_*} C_* \to 0,
+    \]
+    si ha una successione esatta corta di complessi:
+    \[
+        0 \to A_* \otimes G \xrightarrow{f_* \otimes \mathrm{id}} B_* \otimes G \xrightarrow{g_* \otimes \mathrm{id}} C_* \otimes G \to 0.
+    \]
+    Attenzione: Se i moduli non sono liberi la successione potrebbe non essere esatta a sinistra.
+\end{remark}
+
+\begin{definition} [Omologia a coefficienti in un gruppo abeliano] \nl
+    Sia $X$ uno spazio topologico e $G$ un gruppo abeliano, si definisce l'\textbf{omologia di $X$ con coefficienti in $G$} come:
+    \[
+        H_q(X; G) := H_q(C_*(X) \otimes G),
+    \]
+    dove $C_*(X)$ è il complesso delle catene singolari di $X$.
+\end{definition}
+
+\begin{definition}[Funtore]
+    
+\end{definition}
 \end{document}
